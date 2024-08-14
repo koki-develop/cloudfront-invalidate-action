@@ -9,7 +9,7 @@ inputs:
   id:
     description: The ID of the distribution
     required: false
-  domain-name:
+  cname:
     description: Alternative domain name (CNAME) associated with the CloudFront distribution
     required: false
   paths:
