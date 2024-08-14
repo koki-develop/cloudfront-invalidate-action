@@ -19,7 +19,7 @@ inputs:
     required: false
     default: "/*"
   caller-reference:
-    description: A value that you specify to uniquely identify an invalidation request.
+    description: A value that you specify to uniquely identify an invalidation request
     required: false
   wait:
     description: Wait for the invalidation to complete
@@ -28,7 +28,7 @@ inputs:
 
 outputs:
   invalidation-id:
-    description: The ID of the invalidation
+    description: The ID of the created invalidation
 runs:
   using: node20
   main: dist/index.js
