@@ -1,21 +1,34 @@
-name: Hello World
-description: Greet someone and record the time
+name: AWS CloudFront Invalidate Action
+description: Create an invalidation for a CloudFront distribution.
 
 branding:
-  icon: send
-  color: white
+  icon: refresh-cw
+  color: purple
 
 inputs:
-  message:
-    description: |-
-      The message to echo.
+  id:
+    description: The ID of the distribution
     required: false
-    default: "Hello, world!"
+  domain-name:
+    description: Alternative domain name (CNAME) associated with the CloudFront distribution
+    required: false
+  paths:
+    description: |
+      The paths to be invalidated.
+      You can specify multiple paths by separating them with a newline.
+    required: false
+    default: "/*"
+  caller-reference:
+    description: A value that you specify to uniquely identify an invalidation request.
+    required: false
+  wait:
+    description: Wait for the invalidation to complete
+    required: false
+    default: "true"
 
 outputs:
-  message:
-    description: The message that was echoed.
-
+  invalidation-id:
+    description: The ID of the invalidation
 runs:
   using: node20
   main: dist/index.js
