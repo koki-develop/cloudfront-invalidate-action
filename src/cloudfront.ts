@@ -17,8 +17,8 @@ export const getDistributionIdByDomainName = async (
       new ListDistributionsCommand({ Marker: marker }),
     );
 
-    const distribution = response.DistributionList?.Items?.find(
-      (item) => item.DomainName === domainName,
+    const distribution = response.DistributionList?.Items?.find((item) =>
+      item.Aliases?.Items?.includes(domainName),
     );
     if (distribution) {
       // biome-ignore lint/style/noNonNullAssertion:
