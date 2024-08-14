@@ -1,60 +1,42 @@
-# ts-action-template
+# cloudfront-invalidate-action
 
-[![GitHub Release](https://img.shields.io/github/v/release/koki-develop/ts-action-template)](https://github.com/koki-develop/ts-action-template/releases/latest)
-[![CI](https://img.shields.io/github/actions/workflow/status/koki-develop/ts-action-template/ci.yml?branch=main&logo=github&style=flat&label=ci)](https://github.com/koki-develop/ts-action-template/actions/workflows/ci.yml)
-[![Build](https://img.shields.io/github/actions/workflow/status/koki-develop/ts-action-template/build.yml?branch=main&logo=github&style=flat&label=build)](https://github.com/koki-develop/ts-action-template/actions/workflows/build.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/koki-develop/cloudfront-invalidate-action)](https://github.com/koki-develop/cloudfront-invalidate-action/releases/latest)
+[![CI](https://img.shields.io/github/actions/workflow/status/koki-develop/cloudfront-invalidate-action/ci.yml?branch=main&logo=github&style=flat&label=ci)](https://github.com/koki-develop/cloudfront-invalidate-action/actions/workflows/ci.yml)
+[![Build](https://img.shields.io/github/actions/workflow/status/koki-develop/cloudfront-invalidate-action/build.yml?branch=main&logo=github&style=flat&label=build)](https://github.com/koki-develop/cloudfront-invalidate-action/actions/workflows/build.yml)
 
-This is a template for creating GitHub Actions in TypeScript.
+Create an invalidation for a CloudFront distribution.
 
-## Requirements
+## Usage
 
-[Bun](https://bun.sh/) is required.
+Specify a CloudFront distribution ID or alternative domain name to invalidate the cache.
 
-## Getting Started
+```yaml
+# Specify a CloudFront distribution ID
+- uses: koki-develop/cloudfront-invalidate-action@v1
+  with:
+    id: E1234567890
 
-1. Click the `Use this template` button to create a new repository.  
-2. Move to `Settings` > `Actions` > `General` and enable `Allow GitHub Actions to create and approve pull requests`.
-
-## Development
-
-Install dependencies with `bun install`.
-
-```console
-$ bun install
+# Specify an alternative domain name
+- uses: koki-develop/cloudfront-invalidate-action@v1
+  with:
+    domain-name: www.example.com
 ```
 
-Edit [`action.yml`](./action.yml) to set up the action.  
-Edit [`src/main.ts`](./src/main.ts) to implement the action.
+### Inputs
 
-## Test
+| Name | Description |
+| --- | --- |
+| `id` | The ID of the distribution. |
+| `domain-name` | Alternative domain name (CNAME) associated with the CloudFront distribution. |
+| `paths` | The paths to be invalidated. You can specify multiple paths by separating them with a newline.<br/>The default is `/*`. |
+| `caller-reference` | A value that you specify to uniquely identify an invalidation request. |
+| `wait` | Wait for the Invalidation to complete.<br/>The default is `true`. |
 
-Run `bun run test` to test the action. The testing framework is [Vitest](https://vitest.dev/).
+### Outputs
 
-```console
-$ bun run test
-```
-
-## Release
-
-Run `bun run build` to build the source code. The built code will be output to the `dist/` directory. Commit the content of this directory.
-
-```console
-$ bun run build
-$ git add dist
-$ git commit -m "Build"
-```
-
-Create a tag in semver format.
-> [!NOTE]
-> The major version tag (e.g. `v1`) is created automatically by GitHub Actions.  
-> See: [`.github/workflows/major-version-sync.yml`](./.github/workflows/major-version-sync.yml)
-
-```console
-$ git tag v1.0.0
-$ git push origin v1.0.0
-```
-
-Create a release on GitHub as needed.
+| Name | Description |
+| --- | --- |
+| `invalidation-id` | The ID of the created invalidation. |
 
 ## LICENSE
 
