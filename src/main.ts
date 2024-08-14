@@ -33,15 +33,15 @@ export const main = async () => {
       callerReference: inputs.callerReference,
     });
     core.setOutput("invalidation-id", invalidationId);
-    core.startGroup("Invalidation created");
+    core.startGroup("Invalidation created.");
     core.info(`Distribution ID: ${distributionId}`);
     core.info(`Invalidation ID: ${invalidationId}`);
     core.endGroup();
 
     if (inputs.wait) {
-      core.info("Waiting for invalidation to complete");
+      core.info("Waiting for invalidation to complete...");
       await waitForInvalidation({ distributionId, invalidationId });
-      core.info("Invalidation completed");
+      core.info("Invalidation completed.");
     }
   } catch (error) {
     if (error instanceof Error) {
