@@ -1,4 +1,5 @@
 import * as core from "@actions/core";
+import { context } from "@actions/github";
 import {
   createInvalidation,
   getDistributionIdByDomainName,
@@ -6,9 +7,8 @@ import {
 } from "./cloudfront";
 
 const _randomCallerReference = () => {
-  return `github-actions-${Math.random()
-    .toString(36)
-    .substring(2, 15)}-${new Date().getTime()}`;
+  const suffix = Math.random().toString(36).substring(2, 15);
+  return `github-actions-${context.runId}-${suffix}`;
 };
 
 export const main = async () => {
