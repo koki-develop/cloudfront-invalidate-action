@@ -1,4 +1,4 @@
-name: AWS CloudFront Invalidate Action
+name: CloudFront Invalidate Action
 description: Create an invalidation for a CloudFront distribution.
 
 branding:
