@@ -15,18 +15,18 @@ export const main = async () => {
   try {
     const inputs = {
       id: core.getInput("id"),
-      domainName: core.getInput("domain-name"),
+      cname: core.getInput("cname"),
       paths: core.getInput("paths").trim().split("\n"),
       callerReference:
         core.getInput("caller-reference") || _randomCallerReference(),
       wait: core.getInput("wait") === "true",
     } as const;
-    if (inputs.id === "" && inputs.domainName === "") {
-      throw new Error("`id` or `domain-name` is required");
+    if (inputs.id === "" && inputs.cname === "") {
+      throw new Error("`id` or `cname` is required");
     }
 
     const distributionId =
-      inputs.id || (await getDistributionIdByDomainName(inputs.domainName));
+      inputs.id || (await getDistributionIdByDomainName(inputs.cname));
     const invalidationId = await createInvalidation({
       distributionId,
       paths: inputs.paths,

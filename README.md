@@ -19,7 +19,7 @@ Specify a CloudFront distribution ID or alternative domain name to invalidate th
 # Specify an alternative domain name
 - uses: koki-develop/cloudfront-invalidate-action@v1
   with:
-    domain-name: www.example.com
+    cname: www.example.com
 ```
 
 ### Inputs
@@ -27,7 +27,7 @@ Specify a CloudFront distribution ID or alternative domain name to invalidate th
 | Name | Description |
 | --- | --- |
 | `id` | The ID of the distribution. |
-| `domain-name` | Alternative domain name (CNAME) associated with the CloudFront distribution. |
+| `cname` | Alternative domain name (CNAME) associated with the CloudFront distribution. |
 | `paths` | The paths to be invalidated. You can specify multiple paths by separating them with a newline.<br/>The default is `/*`. |
 | `caller-reference` | A value that you specify to uniquely identify an invalidation request. |
 | `wait` | Wait for the Invalidation to complete.<br/>The default is `true`. |
